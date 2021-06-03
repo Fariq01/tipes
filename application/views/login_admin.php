@@ -21,7 +21,12 @@
             </div>
             <div class="col-5 d-flex align-items-center">
                 <div class="container">
-                    <h3 class="text-center">Login Admin</h3>
+                    <?php if ($this->session->flashdata('error_message') != NULL) { ?>
+                        <div class="alert alert-danger mb-3" role="alert">
+                            <?= $this->session->flashdata('error_message'); ?>
+                        </div>
+                    <?php } ?>
+                    <h3 class="text-center mb-3">Login Admin</h3>
                     <form action="<?= base_url('user/login_admin') ?>" method="post">
                         <div class="mb-3">
                             <label for="inputEmailLogin" class="form-label">Email address</label>

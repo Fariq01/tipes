@@ -22,13 +22,13 @@
                         <a class="nav-link active" href="<?= base_url() ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Cek Booking</a>
+                        <a class="nav-link" href="">Cek Booking</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-success me-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
+                        <a class="nav-link" href="">History</a>
                     </li>
                     <li class="nav-item">
-                        <a class="btn btn-secondary" href="<?= base_url('user/registrasi_pemesan') ?>">Registrasi</a>
+                        <a class="btn btn-danger ms-2" href="<?= base_url('user/logout') ?>">Logout</a>
                     </li>
                 </ul>
             </div>
@@ -46,30 +46,6 @@
         </div>
     </div>
 
-    <!-- Login Modal -->
-    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h3 class="modal-title">Login Pemesan</h3>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="<?= base_url('user/login_pemesan') ?>" method="post">
-                        <div class="mb-3">
-                            <label for="inputEmailLogin" class="form-label">Email address</label>
-                            <input type="email" class="form-control" name="email" id="inputEmailLogin">
-                        </div>
-                        <div class="mb-3">
-                            <label for="InputPasswordLogin" class="form-label">Password</label>
-                            <input type="password" class="form-control" name="password" id="InputPasswordLogin">
-                        </div>
-                        <button type="submit" class="btn btn-primary float-end">Login</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
