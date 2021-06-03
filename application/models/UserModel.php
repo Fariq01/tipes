@@ -1,7 +1,7 @@
 <?php
     defined('BASEPATH') OR exit('No direct script access allowed');
 
-    class Account_model extends CI_Model {
+    class UserModel extends CI_Model {
 
         public function checkPassword($email, $password) {
             $this->db->where('email', $email);
@@ -10,7 +10,7 @@
             return password_verify($password, $hash);
         }
         
-        public function checkAccount($data) {
+        public function checkUser($data) {
             if (!$this->checkEmail($data['email'])) {
                 return false;
             }

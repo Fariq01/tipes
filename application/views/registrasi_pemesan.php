@@ -19,7 +19,7 @@
             <div class="d-flex">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" href="<?= base_url() ?>">Home</a>
+                        <a class="nav-link" href="<?= base_url() ?>">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Cek Booking</a>
@@ -28,7 +28,7 @@
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= base_url('user/registrasi_pemesan') ?>">Registrasi</a>
+                        <a class="nav-link active" href="<?= base_url('user/registrasi_pemesan') ?>">Registrasi</a>
                     </li>
                 </ul>
             </div>
@@ -37,11 +37,30 @@
 
     <div class="container mt-4">
         <div class="row">
-            <div class="col-7">
-                <img src="<?= base_url('assets/img/home-booking.jpg') ?>" class="img-fluid" alt="join us">
+            <div class="col-8">
+                <img src="<?= base_url('assets/img/registrasi-pemesan-join-us.jpg') ?>" class="img-fluid" alt="join us">
             </div>
-            <div class="col-5">
-
+            <div class="col-4">
+                <h3 class="text-center">Registrasi Pemesan</h3>
+                <form action="<?= base_url('user/registrasi_pemesan') ?>" method="post">
+                    <div class="mb-3">
+                        <label for="inputNamaRegistrasi" class="form-label">Nama</label>
+                        <input type="text" class="form-control" name="nama" id="inputNamaRegistrasi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputEmailRegistrasi" class="form-label">Email</label>
+                        <input type="email" class="form-control" name="email" id="inputEmailRegistrasi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputPasswordRegistrasi" class="form-label">Password</label>
+                        <input type="password" class="form-control" name="password" id="inputPasswordRegistrasi">
+                    </div>
+                    <div class="mb-3">
+                        <label for="inputTeleponRegistrasi" class="form-label">Telepon</label>
+                        <input type="tel" class="form-control" name="telepon" id="inputTeleponRegistrasi">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Registrasi</button>
+                </form>
             </div>
         </div>
     </div>
