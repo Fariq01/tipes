@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 03, 2021 at 06:27 AM
+-- Generation Time: Jun 08, 2021 at 11:18 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `tipes_db`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penerbangan`
+--
+
+CREATE TABLE `penerbangan` (
+  `id_penerbangan` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `kode_pesawat` varchar(10) NOT NULL,
+  `asal` varchar(255) NOT NULL,
+  `tujuan` varchar(255) NOT NULL,
+  `tanggal_berangkat` date NOT NULL,
+  `waktu_berangkat` time NOT NULL,
+  `slot` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penerbangan`
+--
+
+INSERT INTO `penerbangan` (`id_penerbangan`, `id_user`, `kode_pesawat`, `asal`, `tujuan`, `tanggal_berangkat`, `waktu_berangkat`, `slot`) VALUES
+(1, 2, 'GRD001', 'Bandung (BDO)', 'Jakarta (JKTA)', '2021-06-10', '16:16:00', 100),
+(2, 2, 'CTI001', 'Bandung (BDO)', 'Denpasar (DPS)', '2021-06-11', '17:00:00', 80);
 
 -- --------------------------------------------------------
 
@@ -91,6 +116,13 @@ INSERT INTO `user_role` (`id_user`, `id_role`) VALUES
 --
 
 --
+-- Indexes for table `penerbangan`
+--
+ALTER TABLE `penerbangan`
+  ADD PRIMARY KEY (`id_penerbangan`),
+  ADD KEY `id_user` (`id_user`);
+
+--
 -- Indexes for table `role`
 --
 ALTER TABLE `role`
@@ -107,11 +139,17 @@ ALTER TABLE `user`
 --
 ALTER TABLE `user_role`
   ADD PRIMARY KEY (`id_user`),
-  ADD KEY `FK_id_role` (`id_role`);
+  ADD KEY `id_role` (`id_role`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `penerbangan`
+--
+ALTER TABLE `penerbangan`
+  MODIFY `id_penerbangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -130,11 +168,17 @@ ALTER TABLE `user`
 --
 
 --
+-- Constraints for table `penerbangan`
+--
+ALTER TABLE `penerbangan`
+  ADD CONSTRAINT `penerbangan_ibfk_1` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+
+--
 -- Constraints for table `user_role`
 --
 ALTER TABLE `user_role`
-  ADD CONSTRAINT `FK_id_role` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
-  ADD CONSTRAINT `FK_id_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
+  ADD CONSTRAINT `user_role_ibfk_1` FOREIGN KEY (`id_role`) REFERENCES `role` (`id_role`),
+  ADD CONSTRAINT `user_role_ibfk_2` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
