@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 08, 2021 at 11:18 AM
+-- Generation Time: Jun 15, 2021 at 03:36 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -35,16 +35,17 @@ CREATE TABLE `penerbangan` (
   `tujuan` varchar(255) NOT NULL,
   `tanggal_berangkat` date NOT NULL,
   `waktu_berangkat` time NOT NULL,
-  `slot` int(11) NOT NULL
+  `slot_economy` int(11) NOT NULL,
+  `slot_business` int(11) NOT NULL,
+  `slot_firstclass` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `penerbangan`
 --
 
-INSERT INTO `penerbangan` (`id_penerbangan`, `id_user`, `kode_pesawat`, `asal`, `tujuan`, `tanggal_berangkat`, `waktu_berangkat`, `slot`) VALUES
-(1, 2, 'GRD001', 'Bandung (BDO)', 'Jakarta (JKTA)', '2021-06-10', '16:16:00', 100),
-(2, 2, 'CTI001', 'Bandung (BDO)', 'Denpasar (DPS)', '2021-06-11', '17:00:00', 80);
+INSERT INTO `penerbangan` (`id_penerbangan`, `id_user`, `kode_pesawat`, `asal`, `tujuan`, `tanggal_berangkat`, `waktu_berangkat`, `slot_economy`, `slot_business`, `slot_firstclass`) VALUES
+(1, 2, 'PSWT001', 'Bandung (BDO)', 'Jakarta (JKTA)', '2021-06-15', '12:30:00', 70, 20, 10);
 
 -- --------------------------------------------------------
 
@@ -78,18 +79,19 @@ CREATE TABLE `user` (
   `password` char(64) NOT NULL,
   `nama` varchar(70) NOT NULL,
   `telepon` varchar(15) NOT NULL,
-  `alamat` varchar(255) DEFAULT NULL,
-  `tanggal_lahir` date DEFAULT NULL
+  `tanggal_lahir` date DEFAULT NULL,
+  `tanggal_registrasi` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `email`, `password`, `nama`, `telepon`, `alamat`, `tanggal_lahir`) VALUES
-(1, 'admin@tipes', '$2y$10$50KMe1CGaSWvDG8irFkwGeGmh7YOtO3Rq2FYg7/udSrjNZ5N90cjG', 'Administrator', '+6200000000000', NULL, NULL),
-(2, 'maskapai@tipes', '$2y$10$ndkZ/8BxnjUPsgKpUk942OfKQIQq4xuDXbBfF2en5kF8fIzcaR/BC', 'Maskapai', '+6211111111111', NULL, NULL),
-(3, 'pemesan@tipes', '$2y$10$.aWqYg4WW0Ebli987YWrLOxfuJ9KZN.6bWbVbtGFsgQaQ1QqFrZXm', 'Pemesan', '+6222222222222', NULL, NULL);
+INSERT INTO `user` (`id_user`, `email`, `password`, `nama`, `telepon`, `tanggal_lahir`, `tanggal_registrasi`) VALUES
+(1, 'admin@tipes', '$2y$10$50KMe1CGaSWvDG8irFkwGeGmh7YOtO3Rq2FYg7/udSrjNZ5N90cjG', 'Administrator', '+6200000000000', NULL, '2021-06-01'),
+(2, 'maskapai@tipes', '$2y$10$ndkZ/8BxnjUPsgKpUk942OfKQIQq4xuDXbBfF2en5kF8fIzcaR/BC', 'Maskapai', '+6211111111111', '2000-01-01', '2021-06-01'),
+(3, 'pemesan@tipes', '$2y$10$.aWqYg4WW0Ebli987YWrLOxfuJ9KZN.6bWbVbtGFsgQaQ1QqFrZXm', 'Pemesan', '+6222222222222', NULL, '2021-06-01'),
+(4, 'joko@tipes', '$2y$10$xMc4fRHo1.9mxtfTVLCTz.MKveIgU.RD30itKZqrHfeRl0ABxpKvq', 'Joko', '+6281212341234', '1990-01-01', '2021-06-15');
 
 -- --------------------------------------------------------
 
@@ -109,7 +111,8 @@ CREATE TABLE `user_role` (
 INSERT INTO `user_role` (`id_user`, `id_role`) VALUES
 (1, 1),
 (2, 2),
-(3, 3);
+(3, 3),
+(4, 3);
 
 --
 -- Indexes for dumped tables
@@ -149,7 +152,7 @@ ALTER TABLE `user_role`
 -- AUTO_INCREMENT for table `penerbangan`
 --
 ALTER TABLE `penerbangan`
-  MODIFY `id_penerbangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_penerbangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `role`
@@ -161,7 +164,7 @@ ALTER TABLE `role`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

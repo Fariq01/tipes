@@ -3,7 +3,7 @@
 
     class PenerbanganModel extends CI_Model {
 
-        public function getAll($id_user) {
+        public function get_all($id_user) {
             $this->db->from('penerbangan');
             $this->db->where('id_user', $id_user);
             return $this->db->get()->result_array();

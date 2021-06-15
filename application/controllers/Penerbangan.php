@@ -5,12 +5,18 @@
         
         public function __construct() {
             parent::__construct();
+            if (!user_role(2)) {
+                redirect('home');
+            }
             $this->load->model('PenerbanganModel');
         }
 
         public function lihat($id_penerbangan) {
             $data = $this->PenerbanganModel->get($id_penerbangan);
+            $this->load->view('default/header', array('title' => 'Data Penerbangan'));
+            $this->load->view('maskapai/navbar_maskapai');
             $this->load->view('penerbangan/lihat_penerbangan', $data);
+            $this->load->view('default/footer');
         }
 
         public function tambah() {
@@ -19,9 +25,14 @@
             $this->form_validation->set_rules('tujuan', 'Tujuan', 'required');
             $this->form_validation->set_rules('tanggal_berangkat', 'Tanggal Berangkat', 'required');
             $this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
-            $this->form_validation->set_rules('slot', 'Slot', 'required');
+            $this->form_validation->set_rules('slot_economy', 'Slot Economy', 'required');
+            $this->form_validation->set_rules('slot_business', 'Slot Business', 'required');
+            $this->form_validation->set_rules('slot_firstclass', 'Slot First Class', 'required');
             if ($this->form_validation->run() == false){
+                $this->load->view('default/header', array('title' => 'Tambah Penerbangan'));
+                $this->load->view('maskapai/navbar_maskapai');
                 $this->load->view('penerbangan/tambah_penerbangan');
+                $this->load->view('default/footer');
 			}
 			else{
                 $data = [
@@ -31,7 +42,9 @@
                     'tujuan' => $this->input->post('tujuan', true),
                     'tanggal_berangkat' => $this->input->post('tanggal_berangkat', true),
                     'waktu_berangkat' => $this->input->post('waktu_berangkat', true),
-                    'slot' => $this->input->post('slot', true)
+                    'slot_economy' => $this->input->post('slot_economy', true),
+                    'slot_business' => $this->input->post('slot_business', true),
+                    'slot_firstclass' => $this->input->post('slot_firstclass', true)
                 ];
     
                 if ($this->PenerbanganModel->insert($data)) {
@@ -52,7 +65,7 @@
             $this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
             $this->form_validation->set_rules('slot', 'Slot', 'required');
             if ($this->form_validation->run() == false){
-                $this->load->view('penerbangan/tambah_penerbangan');
+                redirect('home/maskapai');
 			}
 			else{
                 $data = [
@@ -78,7 +91,7 @@
 
         public function list() {
             $id_user = $this->session->userdata('id_user');
-            $json = array('data' => $this->PenerbanganModel->getAll($id_user));
+            $json = array('data' => $this->PenerbanganModel->get_all($id_user));
             echo json_encode($json);
         }
     }
