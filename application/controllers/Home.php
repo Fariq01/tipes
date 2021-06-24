@@ -44,7 +44,8 @@
             if (user_role(3)) {
                 $this->load->view('default/header', array('title' => 'Home Pemesan'));
                 $this->load->view('pemesan/navbar_pemesan');
-                $this->load->view('pemesan/home_pemesan');
+                // Use default cause still the same
+                $this->load->view('default/home');
                 $this->load->view('default/footer'); 
             } else {
                 redirect('home');

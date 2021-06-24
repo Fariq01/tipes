@@ -7,7 +7,7 @@
                     <a class="nav-link active" href="<?= base_url() ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Cek Booking</a>
+                    <a class="nav-link" href="<?= base_url('booking/cek') ?>">Cek Booking</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-success me-2" href="#" data-bs-toggle="modal" data-bs-target="#loginModal">Login</a>

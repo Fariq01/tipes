@@ -1,6 +1,7 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col">
+            <h3 class="text-center mb-3">List Penerbangan</h3>
             <table id="tablePenerbangan" class="display" style="width:100%">
                 <thead>
                     <tr>
@@ -9,9 +10,7 @@
                         <th>Tujuan</th>
                         <th>Tanggal Berangkat</th>
                         <th>Waktu Berangkat</th>
-                        <th>Slot Economy</th>
-                        <th>Slot Business</th>
-                        <th>Slot First Class</th>
+                        <th>Slot</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -39,13 +38,7 @@
                 "data": "waktu_berangkat",
             },
             {
-                "data": "slot_economy",
-            },
-            {
-                "data": "slot_business",
-            },
-            {
-                "data": "slot_firstclass",
+                "data": "slot",
             },
             {
                 "data": "id_penerbangan",

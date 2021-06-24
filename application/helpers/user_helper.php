@@ -7,4 +7,10 @@
             return false;
         }
     }
+
+    if(!function_exists('has_login')) {
+        function has_login() {
+            return isset($_SESSION['id_user']);
+        }
+    }
 ?>

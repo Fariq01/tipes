@@ -15,7 +15,7 @@
             $data = $this->PenerbanganModel->get($id_penerbangan);
             $this->load->view('default/header', array('title' => 'Data Penerbangan'));
             $this->load->view('maskapai/navbar_maskapai');
-            $this->load->view('penerbangan/lihat_penerbangan', $data);
+            $this->load->view('maskapai/lihat_penerbangan', $data);
             $this->load->view('default/footer');
         }
 
@@ -25,13 +25,14 @@
             $this->form_validation->set_rules('tujuan', 'Tujuan', 'required');
             $this->form_validation->set_rules('tanggal_berangkat', 'Tanggal Berangkat', 'required');
             $this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
-            $this->form_validation->set_rules('slot_economy', 'Slot Economy', 'required');
-            $this->form_validation->set_rules('slot_business', 'Slot Business', 'required');
-            $this->form_validation->set_rules('slot_firstclass', 'Slot First Class', 'required');
+            $this->form_validation->set_rules('slot', 'Slot', 'required');
+            $this->form_validation->set_rules('harga_economy', 'Economy', 'required');
+            $this->form_validation->set_rules('harga_business', 'Business', 'required');
+            $this->form_validation->set_rules('harga_firstclass', 'First Class', 'required');
             if ($this->form_validation->run() == false){
                 $this->load->view('default/header', array('title' => 'Tambah Penerbangan'));
                 $this->load->view('maskapai/navbar_maskapai');
-                $this->load->view('penerbangan/tambah_penerbangan');
+                $this->load->view('maskapai/tambah_penerbangan');
                 $this->load->view('default/footer');
 			}
 			else{
@@ -42,12 +43,16 @@
                     'tujuan' => $this->input->post('tujuan', true),
                     'tanggal_berangkat' => $this->input->post('tanggal_berangkat', true),
                     'waktu_berangkat' => $this->input->post('waktu_berangkat', true),
-                    'slot_economy' => $this->input->post('slot_economy', true),
-                    'slot_business' => $this->input->post('slot_business', true),
-                    'slot_firstclass' => $this->input->post('slot_firstclass', true)
+                    'slot' => $this->input->post('slot', true),
                 ];
-    
-                if ($this->PenerbanganModel->insert($data)) {
+                
+                $harga = [
+                    'harga_economy' => $this->input->post('harga_economy', true),
+                    'harga_business' => $this->input->post('harga_business', true),
+                    'harga_firstclass' => $this->input->post('harga_firstclass', true)
+                ];
+
+                if ($this->PenerbanganModel->insert($data, $harga)) {
                     $this->session->set_flashdata('success_message', 'Penerbangan berhasil ditambahkan!');
                     redirect('penerbangan/tambah');
                 } else {
@@ -64,6 +69,9 @@
             $this->form_validation->set_rules('tanggal_berangkat', 'Tanggal Berangkat', 'required');
             $this->form_validation->set_rules('waktu_berangkat', 'Waktu Berangkat', 'required');
             $this->form_validation->set_rules('slot', 'Slot', 'required');
+            $this->form_validation->set_rules('harga_economy', 'Economy', 'required');
+            $this->form_validation->set_rules('harga_business', 'Business', 'required');
+            $this->form_validation->set_rules('harga_firstclass', 'First Class', 'required');
             if ($this->form_validation->run() == false){
                 redirect('home/maskapai');
 			}
@@ -74,17 +82,23 @@
                     'tujuan' => $this->input->post('tujuan', true),
                     'tanggal_berangkat' => $this->input->post('tanggal_berangkat', true),
                     'waktu_berangkat' => $this->input->post('waktu_berangkat', true),
-                    'slot' => $this->input->post('slot', true)
+                    'slot' => $this->input->post('slot', true),
+                ];
+                
+                $harga = [
+                    'harga_economy' => $this->input->post('harga_economy', true),
+                    'harga_business' => $this->input->post('harga_business', true),
+                    'harga_firstclass' => $this->input->post('harga_firstclass', true)
                 ];
 
                 $id_penerbangan = $this->input->post('id_penerbangan', true);
 
-                if ($this->PenerbanganModel->edit($data, $id_penerbangan)) {
+                if ($this->PenerbanganModel->edit($id_penerbangan, $data, $harga)) {
                     $this->session->set_flashdata('success_message', 'Penerbangan berhasil diedit!');
-                    redirect('penerbangan/edit');
+                    redirect('penerbangan/lihat/'. $id_penerbangan);
                 } else {
                     $this->session->set_flashdata('error_message', 'Penerbangan gagal diedit!');
-                    redirect('penerbangan/edit');
+                    redirect('penerbangan/lihat/'. $id_penerbangan);
                 }
             }
         }

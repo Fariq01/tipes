@@ -1,22 +1,25 @@
 <div class="container mt-4">
     <div class="row">
-        <?php if ($this->session->flashdata('error_message') != NULL) { ?>
-            <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
-                <?= $this->session->flashdata('error_message'); ?>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        <?php } ?>
-        <div class="col-7">
-            <img src="<?= base_url('assets/img/home-booking.jpg') ?>" class="img-fluid" alt="join us">
-        </div>
-        <div class="col-5 d-flex align-items-center">
-            <div class="container">
-                <h2 class="text-center mb-3">Booking Tiket</h2>
-                <form action="<?= base_url('booking/jadwal') ?>" method="post">
+        <div class="col d-flex align-items-center">
+            <div class="container " style="width: 50%">
+                <?php if ($this->session->flashdata('error_message') != NULL) { ?>
+                    <div class="alert alert-danger alert-dismissible fade show mb-3" role="alert">
+                        <?= $this->session->flashdata('error_message'); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+                <?php if ($this->session->flashdata('success_message') != NULL) { ?>
+                    <div class="alert alert-success alert-dismissible fade show mb-3" role="alert">
+                        <?= $this->session->flashdata('success_message'); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                <?php } ?>
+                <h3 class="text-center mb-3">Tambah Penerbangan</h3>
+                <form action="<?= base_url('penerbangan/tambah') ?>" method="post">
                     <div class="row mb-3">
                         <div class="col">
-                            <label for="inputAsalBooking" class="form-label">Asal</label>
-                            <select id="inputAsalBooking" class="form-control" name="asal">
+                        <label for="inputAsal" class="form-label">Asal</label>
+                            <select id="inputAsal" class="form-control" name="asal">
                                 <option value="Balikpapan">Balikpapan</option>
                                 <option value="Banda Aceh">Banda Aceh</option>
                                 <option value="Bandung">Bandung</option>
@@ -39,9 +42,11 @@
                                 <option value="Surabaya">Surabaya</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="row mb-3">
                         <div class="col">
-                            <label for="inputTujuanBooking" class="form-label">Tujuan</label>
-                            <select id="inputTujuanBooking" class="form-control" name="tujuan">
+                        <label for="inputTujuan" class="form-label">Tujuan</label>
+                            <select id="inputTujuan" class="form-control" name="tujuan">
                                 <option value="Balikpapan">Balikpapan</option>
                                 <option value="Banda Aceh">Banda Aceh</option>
                                 <option value="Bandung">Bandung</option>
@@ -66,28 +71,40 @@
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col">
+                        <div class="col-7">
                             <label for="inputTanggalBerangkat" class="form-label">Tanggal Berangkat</label>
-                            <input type="date" class="form-control" name="tanggal_berangkat" id="inputTanggalBerangkat" value="<?= date('Y-m-d') ?>">
+                            <input type="date" class="form-control" name="tanggal_berangkat" id="inputTanggalBerangkat" value="<?= date('Y-m-d') ?>>
                         </div>
-                        <div class="col">
-                            <label for="inputKelas" class="form-label">Kelas</label>
-                            <select id="inputKelas" class="form-control" name="id_kelas">
-                                <option value="1">Economy</option>
-                                <option value="2">Business</option>
-                                <option value="3">First Class</option>
-                            </select>
+                        <div class="col-5">
+                            <label for="inputWaktuBerangkat" class="form-label">Waktu Berangkat</label>
+                            <input type="time" class="form-control" name="waktu_berangkat" id="inputWaktuBerangkat" value="<?= date('H:i') ?>">
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col">
-                            <label for="inputJumlahPenumpang" class="form-label">Jumlah Penumpang</label>
-                            <input type="number" class="form-control" name="jumlah_penumpang" id="inputJumlahPenumpang">
+                        <div class="col-7">
+                            <label for="inputKodePesawat" class="form-label">Kode Pesawat</label>
+                            <input type="text" class="form-control" name="kode_pesawat" id="inputKodePesawat">
                         </div>
-                        <div class="col d-flex align-items-end">
-                            <button type="submit" class="btn btn-primary flex-fill">Booking</button>
+                        <div class="col-5">
+                            <label for="inputSlot" class="form-label">Slot</label>
+                            <input type="number" class="form-control" name="slot" id="inputSlot">
                         </div>
                     </div>
+                    <div class="row mb-3">
+                        <div class="col-4">
+                            <label for="inputHargaEconomy" class="form-label">Harga Economy</label>
+                            <input type="number" class="form-control" name="harga_economy" id="inputHargaEconomy">
+                        </div>
+                        <div class="col-4">
+                            <label for="inputHargaBusiness" class="form-label">Harga Business</label>
+                            <input type="number" class="form-control" name="harga_business" id="inputHargaBusiness">
+                        </div>
+                        <div class="col-4">
+                            <label for="inputHargaFirstClass" class="form-label">Harga First Class</label>
+                            <input type="number" class="form-control" name="harga_firstclass" id="inputHargaFirstClass">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Tambah</button>
                 </form>
             </div>
         </div>

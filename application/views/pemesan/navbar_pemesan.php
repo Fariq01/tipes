@@ -7,10 +7,10 @@
                     <a class="nav-link active" href="<?= base_url('home/pemesan') ?>">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">Cek Booking</a>
+                    <a class="nav-link" href="<?= base_url('booking/cek') ?>">Cek Booking</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="">History</a>
+                    <a class="nav-link" href="<?= base_url('booking/history') ?>">History</a>
                 </li>
                 <li class="nav-item">
                     <a class="btn btn-danger ms-2" href="<?= base_url('user/logout') ?>">Logout</a>

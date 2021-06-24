@@ -6,8 +6,9 @@
         <div class="col-5 d-flex align-items-center">
             <div class="container">
                 <?php if ($this->session->flashdata('error_message') != NULL) { ?>
-                    <div class="alert alert-danger mb-3" role="alert">
+                    <div class="alert alert-danger mb-3 alert-dismissible fade show" role="alert">
                         <?= $this->session->flashdata('error_message'); ?>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 <?php } ?>
                 <h3 class="text-center">Login Maskapai</h3>
